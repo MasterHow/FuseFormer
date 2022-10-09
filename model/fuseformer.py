@@ -107,7 +107,9 @@ class Encoder(nn.Module):
 
 
 class InpaintGenerator(BaseNetwork):
-    def __init__(self, init_weights=True):
+    def __init__(self, init_weights=True, output_size=None):
+        """Revised by Hao: able to train on customize size.
+        output_size: [h, w]"""
         super(InpaintGenerator, self).__init__()
         channel = 256
         hidden = 512
@@ -116,7 +118,13 @@ class InpaintGenerator(BaseNetwork):
         kernel_size = (7, 7)
         padding = (3, 3)
         stride = (3, 3)
-        output_size = (60, 108)
+
+        if output_size is None:
+            # default
+            output_size = (60, 108)
+        else:
+            output_size = (output_size[0], output_size[1])
+
         blocks = []
         dropout = 0.
         t2t_params = {'kernel_size': kernel_size, 'stride': stride, 'padding': padding, 'output_size': output_size}
