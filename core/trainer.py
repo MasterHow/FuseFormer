@@ -12,7 +12,8 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 from torch.nn.parallel import DistributedDataParallel as DDP
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 import torch.distributed as dist
 
 from core.dataset import Dataset
